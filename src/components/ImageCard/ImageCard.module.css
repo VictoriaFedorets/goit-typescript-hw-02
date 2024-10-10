@@ -1,0 +1,10 @@
+.imgСard {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image {
+  width: 550px;
+  height: 400px;
+}

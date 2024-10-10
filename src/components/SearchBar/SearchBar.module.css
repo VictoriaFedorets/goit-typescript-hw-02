@@ -1,0 +1,40 @@
+.header {
+  background-color: blue;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.form {
+  font-size: 25px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.input {
+  border-style: none;
+  width: 500px;
+  border-radius: 10px;
+  padding: 8px 15px;
+
+  transition: var(--animation-cubicBezier);
+
+  font-size: var(--font-medium);
+  color: var(--color-dark);
+
+  letter-spacing: 0.03em;
+
+  &::placeholder {
+    font-weight: 200;
+  }
+}
+
+.btnSearch {
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: 500;
+  border-radius: 10px;
+}
