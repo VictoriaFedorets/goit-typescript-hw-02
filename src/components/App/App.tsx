@@ -15,18 +15,18 @@ export default function App() {
   const [page, setPage] = useState<number>(1);
   const [images, setImages] = useState<IPhoto[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
   const [isEmpty, setIsEmpty] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [modalIsOpen, setIsOpen] = useState<boolean>(false);
-  const [modalImg, setModalImg] = useState<null>(null);
+  const [modalImg, setModalImg] = useState<IPhoto | null>(null);
 
   useEffect(() => {
     if (!query) {
       return;
     }
 
-    const fetchData = async () => {
+    const fetchData = async (): Promise<void> => {
       setIsLoading(true);
       setError(null);
 
@@ -43,8 +43,8 @@ export default function App() {
         setImages(prevImages => [...prevImages, ...photos]);
         setIsEmpty(false);
         setIsVisible(page < Math.ceil(total_pages));
-      } catch (error) {
-        setError(error);
+      } catch (error: any) {
+        setError(error.message || "Something went wrong");
       } finally {
         setIsLoading(false);
       }
@@ -53,7 +53,7 @@ export default function App() {
     fetchData();
   }, [page, query]);
 
-  const onHandleSubmit = value => {
+  const onHandleSubmit = (value: string): void => {
     setQuery(value);
     setImages([]);
     setPage(1);
@@ -62,17 +62,17 @@ export default function App() {
     setIsVisible(false);
   };
 
-  const onLoadMore = () => {
+  const onLoadMore = (): void => {
     setPage(prevPage => prevPage + 1);
   };
 
-  const openModal = image => {
+  const openModal = (image: IPhoto): void => {
     console.log("Opening modal with image:", image);
     setIsOpen(true);
     setModalImg(image);
   };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setIsOpen(false);
     setModalImg(null);
   };
@@ -98,7 +98,7 @@ export default function App() {
       {isLoading && <Loader />}
       {error && (
         <ErrorMessage textAlign="center">
-          ❌ Something went wrong - {error.message}
+          ❌ Something went wrong - {error}
         </ErrorMessage>
       )}
       {isEmpty && (

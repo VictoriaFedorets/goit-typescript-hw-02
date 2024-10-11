@@ -1,6 +1,12 @@
-import css from "./ImageCard.module.css"; // Optional, for styling
+import css from "./ImageCard.module.css";
+import { IPhoto } from "../../apiService/apiService";
 
-export default function ImageCard({ image, onClick }) {
+interface ImageCardProps {
+  image: IPhoto;
+  onClick: (image: IPhoto) => void;
+}
+
+export default function ImageCard({ image, onClick }: ImageCardProps) {
   return (
     <div className={css.imgСard}>
       <img

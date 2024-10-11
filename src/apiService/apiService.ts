@@ -22,6 +22,7 @@ export interface GetPhotos {
   results: IPhoto[];
   total: number;
   total_pages: number;
+  per_page: number;
 }
 
 export const getPhotos = async (
@@ -38,8 +39,11 @@ export const getPhotos = async (
     },
   });
   console.log(response.data);
+
   return {
     results: response.data.results,
+    total: response.data.total,
     total_pages: response.data.total_pages,
+    per_page: response.data.per_page,
   };
 };

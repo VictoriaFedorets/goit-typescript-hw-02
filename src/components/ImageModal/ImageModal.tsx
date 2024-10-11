@@ -3,7 +3,19 @@ import css from "./ImageModal.module.css";
 
 Modal.setAppElement("#root");
 
-export default function ImageModal({ isOpen, onClose, image }) {
+import { IPhoto } from "../../apiService/apiService";
+
+interface ImageModalProps {
+  image: IPhoto | null;
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function ImageModal({
+  isOpen,
+  onClose,
+  image,
+}: ImageModalProps) {
   return (
     <Modal
       isOpen={isOpen}

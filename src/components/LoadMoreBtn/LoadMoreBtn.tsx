@@ -1,6 +1,16 @@
 import css from "./LoadMoreBtn.module.css";
 
-export default function LoadMoreBtn({ onClick, disabled }) {
+interface LoadMoreBtnProps {
+  onClick: () => void;
+  disabled: boolean;
+  children: React.ReactNode;
+}
+
+export default function LoadMoreBtn({
+  onClick,
+  disabled,
+  children,
+}: LoadMoreBtnProps) {
   return (
     <button
       className={css.button}
@@ -8,7 +18,8 @@ export default function LoadMoreBtn({ onClick, disabled }) {
       onClick={onClick}
       disabled={disabled}
     >
-      Load more
+      {children}
+      {/* Load more */}
     </button>
   );
 }
