@@ -3,7 +3,31 @@ import axios from "axios";
 const API_KEY = "mj37NY3H-sIFFcw4OqLcFSNvC9sTckof4I6GPoNBDZk";
 const BASE_URL = "https://api.unsplash.com/search/photos";
 
-export const getPhotos = async (query, page) => {
+export interface IPhoto {
+  id: string;
+  urls: {
+    regular: string;
+    small: string;
+  };
+  alt_description: string;
+  description: string;
+  user: {
+    name: string;
+    location: string;
+  };
+  likes: number;
+}
+
+export interface GetPhotos {
+  results: IPhoto[];
+  total: number;
+  total_pages: number;
+}
+
+export const getPhotos = async (
+  query: string,
+  page: number
+): Promise<GetPhotos> => {
   const response = await axios.get(BASE_URL, {
     params: {
       orientation: "landscape",

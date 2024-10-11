@@ -8,16 +8,18 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 
+import { IPhoto } from "../../apiService/apiService";
+
 export default function App() {
-  const [query, setQuery] = useState("");
-  const [page, setPage] = useState("1");
-  const [images, setImages] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [isEmpty, setIsEmpty] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [modalImg, setModalImg] = useState(null);
+  const [query, setQuery] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [images, setImages] = useState<IPhoto[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [isEmpty, setIsEmpty] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [modalIsOpen, setIsOpen] = useState<boolean>(false);
+  const [modalImg, setModalImg] = useState<null>(null);
 
   useEffect(() => {
     if (!query) {
